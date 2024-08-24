@@ -8,9 +8,15 @@
     "test": "jest"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.19.2"
   },
   "devDependencies": {
-    "jest": "^27.0.6"
-  }
+    "jest": "^27.5.1"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
