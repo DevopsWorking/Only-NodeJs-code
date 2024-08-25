@@ -6,13 +6,41 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #f0f0f0;
+    overflow: hidden;
 }
 
 #app {
     text-align: center;
 }
 
+#scrolling-text {
+    width: 100%;
+    overflow: hidden;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+#scrolling-text p {
+    white-space: nowrap;
+    margin: 0;
+    animation: scrollText 20s linear infinite;
+}
+
+@keyframes scrollText {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+#image-container {
+    margin-top: 20px;
+}
+
 img {
     max-width: 300px;
-    margin-top: 20px;
+    transition: transform 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.1);
 }

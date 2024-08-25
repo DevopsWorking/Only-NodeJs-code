@@ -15,6 +15,11 @@ test('Node.js image is displayed', () => {
     const imgElement = imageContainer.querySelector('img');
     
     expect(imgElement).not.toBeNull();
-    expect(imgElement.src).toBe('https://nodejs.org/static/images/logo.svg');
+    expect(imgElement.src).toContain('/images/nodejs-logo.svg');
     expect(imgElement.alt).toBe('Node.js logo');
+});
+
+test('Scrolling text is initialized', () => {
+    const scrollingText = document.querySelector('#scrolling-text p');
+    expect(scrollingText.style.animationDuration).not.toBe('');
 });
