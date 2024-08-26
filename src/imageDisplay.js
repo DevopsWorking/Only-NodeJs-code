@@ -1,5 +1,5 @@
 function displayNodejsImage() {
-    const imageUrl = '/images/nodejs-logo.svg';
+    const imageUrl = '/images/nodejs-logo.png';
     const imgElement = document.createElement('img');
     imgElement.src = imageUrl;
     imgElement.alt = 'Node.js logo';
