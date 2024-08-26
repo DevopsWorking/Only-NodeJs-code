@@ -2,24 +2,27 @@
  * @jest-environment jsdom
  */
 
-const fs = require('fs');
-const path = require('path');
+const { createNodejsImage, calculateScrollingTextDuration } = require('../src/imageDisplay');
 
-beforeEach(() => {
-    document.body.innerHTML = fs.readFileSync(path.resolve(__dirname, '../public/index.html'), 'utf8');
-    require('../src/imageDisplay.js');
-});
+describe('imageDisplay', () => {
+    test('createNodejsImage creates an img element with correct attributes', () => {
+        const imgElement = createNodejsImage();
+        
+        expect(imgElement.tagName).toBe('IMG');
+        expect(imgElement.src).toContain('/images/nodejs-logo.png');
+        expect(imgElement.alt).toBe('Node.js logo');
+    });
 
-test('Node.js image is displayed', () => {
-    const imageContainer = document.getElementById('image-container');
-    const imgElement = imageContainer.querySelector('img');
-    
-    expect(imgElement).not.toBeNull();
-    expect(imgElement.src).toContain('/images/nodejs-logo.png');
-    expect(imgElement.alt).toBe('Node.js logo');
-});
+    test('calculateScrollingTextDuration returns correct duration string', () => {
+        const mockElement = { offsetWidth: 1000 };
+        const duration = calculateScrollingTextDuration(mockElement);
+        
+        expect(duration).toBe('20s');
+    });
 
-test('Scrolling text is initialized', () => {
-    const scrollingText = document.querySelector('#scrolling-text p');
-    expect(scrollingText.style.animationDuration).not.toBe('');
+    test('calculateScrollingTextDuration returns fallback duration for invalid input', () => {
+        const duration = calculateScrollingTextDuration(null);
+        
+        expect(duration).toBe('20s');
+    });
 });

@@ -1,22 +1,35 @@
-function displayNodejsImage() {
+function createNodejsImage() {
     const imageUrl = '/images/nodejs-logo.png';
     const imgElement = document.createElement('img');
     imgElement.src = imageUrl;
     imgElement.alt = 'Node.js logo';
-    imgElement.onerror = () => console.error('Failed to load image:', imageUrl);
-    imgElement.onload = () => console.log('Image loaded successfully');
-    document.getElementById('image-container').appendChild(imgElement);
+    return imgElement;
 }
 
-function initScrollingText() {
+function calculateScrollingTextDuration(element) {
+    if (element && typeof element.offsetWidth === 'number') {
+        return `${Math.max(element.offsetWidth, 1) / 50}s`;
+    }
+    return '20s'; // fallback duration
+}
+
+function init() {
+    const imageContainer = document.getElementById('image-container');
+    if (imageContainer) {
+        imageContainer.appendChild(createNodejsImage());
+    }
+
     const scrollingText = document.querySelector('#scrolling-text p');
     if (scrollingText) {
-        const duration = `${scrollingText.offsetWidth / 50}s`;
-        scrollingText.style.animationDuration = duration;
+        scrollingText.style.animationDuration = calculateScrollingTextDuration(scrollingText);
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    displayNodejsImage();
-    initScrollingText();
-});
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', init);
+}
+
+// Export for testing
+if (typeof module !== 'undefined') {
+    module.exports = { createNodejsImage, calculateScrollingTextDuration, init };
+}
