@@ -15,7 +15,7 @@ test('Node.js image is displayed', () => {
     const imgElement = imageContainer.querySelector('img');
     
     expect(imgElement).not.toBeNull();
-    expect(imgElement.src).toContain('/images/nodejs-logo.svg');
+    expect(imgElement.src).toContain('/images/nodejs-logo.png');
     expect(imgElement.alt).toBe('Node.js logo');
 });
 
