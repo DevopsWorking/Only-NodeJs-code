@@ -1,3 +1,5 @@
+my package.json
+
 {
   "name": "my-nodejs-spa",
   "version": "1.0.0",
@@ -11,20 +13,7 @@
     "express": "^4.19.2"
   },
   "devDependencies": {
-    "jest": "^27.5.1",
-    "jest-junit": "^16.0.0"
-  },
-  "jest": {
-    "reporters": [
-      "default",
-      [
-        "jest-junit",
-        {
-          "outputDirectory": "test-results",
-          "outputName": "junit.xml"
-        }
-      ]
-    ]
+    "jest": "^27.5.1"
   },
   "directories": {
     "test": "tests"
