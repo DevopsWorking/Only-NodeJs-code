@@ -5,7 +5,7 @@
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
-    "test": "jest"
+    "test": "jest --ci --reporters=default --reporters=jest-junit"
   },
   "dependencies": {
     "express": "^4.19.2"
