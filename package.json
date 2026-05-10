@@ -11,7 +11,7 @@
     "express": "^4.19.2"
   },
   "devDependencies": {
-    "jest": "^27.5.1",
+    "jest": "^27.5.1"
   },
   "directories": {
     "test": "tests"
