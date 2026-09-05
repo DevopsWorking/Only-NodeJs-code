@@ -1,0 +1,36 @@
+pipeline{
+    agent any
+    tools {
+        nodejs 'node'
+    }
+    environment {
+        creds = credentials('docker-cred')
+    }
+    stages{
+        stage('checkout stage'){
+            steps{
+                checkout scmGit(branches: [[name: '*/withdockerfile']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/DevopsWorking/Only-NodeJs-code.git']])
+            }
+        }
+        stage('npm stage'){
+            steps{
+                sh 'npm test'
+            }
+        }
+        stage('docker stage'){
+            steps{
+                sh "docker build -t coursediy/weekend-session:${env.BUILD_NUMBER} ."
+            }
+        }
+        stage('docker login'){
+            steps{
+                sh "echo $creds_PSW | docker login -u $creds_USR --password-stdin"
+            }
+        }
+        stage('docker push'){
+            steps{
+                sh "docker push coursediy/weekend-session:${env.BUILD_NUMBER}"
+            }
+        }
+    }
+}
